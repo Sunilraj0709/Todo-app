@@ -38,6 +38,23 @@ class App extends React.Component {
       list: updated_list
     })
   }
+  
+  //this is for cliking on check box 
+  completedTask(id){
+    const list = [...this.state.list];  // append to list
+    const updated_list = list.map(item => {
+      // eslint-disable-next-line no-undef
+      if(item.id === id)
+      {
+        item.isDone = true
+      }
+      return item;
+     }); // remove item which match with id
+    this.setState({
+      list: updated_list
+    })
+
+  }
 
   // this function used to get new item  
   updateInput(input) {
@@ -49,7 +66,7 @@ class App extends React.Component {
     return (
       <div>
         <img src={logo} width="200" height="200" alt="logo" className="logo" />
-        <h1 className="app-title">Kush Guglani Todo App</h1>
+        <h1 className="app-title">Sunil raj Todo App</h1>
         <div className="container">
           Add an Item...
           <br></br>
@@ -72,7 +89,7 @@ class App extends React.Component {
                   <li key={item.id}>
                     <input type="checkbox"
                       checked={item.isDone}
-                      onChange={() => { }} />
+                      onChange={() => {this.completedTask(item.id) }} />
                     {item.value}
                     <button className="btn" onClick={() => this.deleteItem(item.id)}>Delete</button>
                   </li>
